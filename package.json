@@ -9,7 +9,9 @@
     "prepare": "husky install"
   },
   "standard": {
-    "env": ["jest"]
+    "env": [
+      "jest"
+    ]
   },
   "keywords": [],
   "author": "",
@@ -19,5 +21,9 @@
     "jest": "^27.4.7",
     "lint-staged": "^12.3.3",
     "standard": "^16.0.4"
+  },
+  "dependencies": {
+    "express": "^4.17.2",
+    "mongoose": "^6.2.0"
   }
 }

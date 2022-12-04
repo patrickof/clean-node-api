@@ -157,12 +157,12 @@ describe('Auth UseCase', () => {
     expect(accessToken).toBeTruthy()
   })
 
-  test('Should thow if invalid dependencies are provided', async () => {
+  test('Should throw if invalid dependencies are provided', async () => {
     const invalid = {}
 
     const loadUserByEmailRepository = makeLoadUserByEmailRepository()
     const encrypter = makeEncrypter()
-
+    const tokenGenerator = makeTokenGenerator()
     const suts = [].concat(
       new AuthUseCase(),
       new AuthUseCase({}),
@@ -177,6 +177,12 @@ describe('Auth UseCase', () => {
         loadUserByEmailRepository: loadUserByEmailRepository,
         encrypter: encrypter,
         tokenGenerator: invalid
+      }),
+      new AuthUseCase({
+        loadUserByEmailRepository: loadUserByEmailRepository,
+        encrypter: encrypter,
+        tokenGenerator: tokenGenerator,
+        updateAccessTokenRepository: invalid
       })
     )
 
@@ -186,7 +192,7 @@ describe('Auth UseCase', () => {
     }
   })
 
-  test('Should thow if dependency throws', async () => {
+  test('Should throw if dependency throws', async () => {
     const loadUserByEmailRepository = makeLoadUserByEmailRepository()
     const encrypter = makeEncrypter()
 
